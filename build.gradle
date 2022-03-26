@@ -31,15 +31,28 @@ repositories {
 dependencies {
 	compile 'commons-io:commons-io:2.11.0'
 
-	compile "com.github.weisj:darklaf-core:${darklaf_ver}"
-	compile "com.github.weisj:darklaf-theme:${darklaf_ver}"
-	compile "com.github.weisj:darklaf-property-loader:${darklaf_ver}"
+	compile("com.github.weisj:darklaf-core:${darklaf_ver}") {
+        exclude module: 'darklaf-utils'
+    }
+    compile "com.github.weisj:darklaf-theme:${darklaf_ver}"
+    compile("com.github.weisj:darklaf-property-loader:${darklaf_ver}") {
+        exclude module: 'darklaf-utils'
+    }
 
 	compile "org.ow2.asm:asm:${asm_ver}"
-	compile "org.ow2.asm:asm-tree:${asm_ver}"
-	compile "org.ow2.asm:asm-analysis:${asm_ver}"
-	compile "org.ow2.asm:asm-util:${asm_ver}"
-	compile "org.ow2.asm:asm-commons:${asm_ver}"
+    compile("org.ow2.asm:asm-tree:${asm_ver}") {
+        exclude module: 'asm'
+    }
+	compile("org.ow2.asm:asm-util:${asm_ver}") {
+        exclude module: 'asm'
+        exclude module: 'asm-tree'
+        exclude module: 'asm-analysis'
+    }
+	compile("org.ow2.asm:asm-commons:${asm_ver}") {
+        exclude module: 'asm'
+        exclude module: 'asm-tree'
+        exclude module: 'asm-analysis'
+    }
 
 	compile 'org.benf:cfr:0.152'
 	compile name: 'fernflower-15-05-20'
