@@ -33,6 +33,8 @@ dependencies {
 
 	compile("com.github.weisj:darklaf-core:${darklaf_ver}") {
         exclude module: 'darklaf-utils'
+        exclude module: 'darklaf-theme'
+        exclude module: 'darklaf-property-loader'
     }
     compile "com.github.weisj:darklaf-theme:${darklaf_ver}"
     compile("com.github.weisj:darklaf-property-loader:${darklaf_ver}") {
