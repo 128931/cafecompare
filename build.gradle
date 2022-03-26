@@ -15,23 +15,23 @@ sourceSets {
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 javadoc.options.encoding = 'UTF-8'
- 
+
 ext {
     darklaf_ver = '2.7.3'
     asm_ver = '9.2'
 }
- 
+
 repositories {
     mavenCentral()
     flatDir {
-       dirs 'libs'
+        dirs 'libs'
     }
 }
 
 dependencies {
-	compile 'commons-io:commons-io:2.11.0'
+    compile 'commons-io:commons-io:2.11.0'
 
-	compile("com.github.weisj:darklaf-core:${darklaf_ver}") {
+    compile("com.github.weisj:darklaf-core:${darklaf_ver}") {
         exclude module: 'darklaf-utils'
         exclude module: 'darklaf-theme'
         exclude module: 'darklaf-property-loader'
@@ -41,35 +41,35 @@ dependencies {
         exclude module: 'darklaf-utils'
     }
 
-	compile "org.ow2.asm:asm:${asm_ver}"
+    compile "org.ow2.asm:asm:${asm_ver}"
     compile("org.ow2.asm:asm-tree:${asm_ver}") {
         exclude module: 'asm'
     }
-	compile("org.ow2.asm:asm-util:${asm_ver}") {
+    compile("org.ow2.asm:asm-util:${asm_ver}") {
         exclude module: 'asm'
         exclude module: 'asm-tree'
         exclude module: 'asm-analysis'
     }
-	compile("org.ow2.asm:asm-commons:${asm_ver}") {
+    compile("org.ow2.asm:asm-commons:${asm_ver}") {
         exclude module: 'asm'
         exclude module: 'asm-tree'
         exclude module: 'asm-analysis'
     }
 
-	compile 'org.benf:cfr:0.152'
-	compile name: 'fernflower-15-05-20'
+    compile 'org.benf:cfr:0.152'
+    compile name: 'fernflower-15-05-20'
 
-	compile 'com.fifesoft:rsyntaxtextarea:3.2.0'
+    compile 'com.fifesoft:rsyntaxtextarea:3.2.0'
 }
 
 task fatJar(type: Jar) {
-	manifest {
+    manifest {
         attributes 'Implementation-Title': "${project.name}",
                 'Implementation-Version': "${project.version}",
                 'Main-Class': 'me.nov.cafecompare.Cafecompare'
     }
     baseName(project.name + '-all')
-    from (configurations.compile.collect { entry -> zipTree(entry) }) {
+    from(configurations.compile.collect { entry -> zipTree(entry) }) {
         exclude 'META-INF/MANIFEST.MF'
         exclude 'META-INF/*.SF'
         exclude 'META-INF/*.DSA'

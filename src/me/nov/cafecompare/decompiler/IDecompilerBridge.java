@@ -1,7 +1,7 @@
 package me.nov.cafecompare.decompiler;
 
 public interface IDecompilerBridge {
-  void setAggressive(boolean aggressive);
+    void setAggressive(boolean aggressive);
 
-  String decompile(String name, byte[] bytes);
+    String decompile(String name, byte[] bytes);
 }
