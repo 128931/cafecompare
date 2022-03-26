@@ -1,6 +1,7 @@
 package me.nov.cafecompare.io;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.jar.*;
 import java.util.stream.Stream;
@@ -14,7 +15,7 @@ import me.nov.cafecompare.swing.Utils;
 public class JarIO {
 
   public static ArrayList<Clazz> loadClasses(File jarFile) throws IOException {
-    ArrayList<Clazz> classes = new ArrayList<Clazz>();
+    ArrayList<Clazz> classes = new ArrayList<>();
     JarFile jar = new JarFile(jarFile);
     Stream<JarEntry> str = jar.stream();
     str.forEach(z -> readEntry(jar, z, classes));
@@ -41,7 +42,7 @@ public class JarIO {
     return classes;
   }
 
-  public static final String CERT_REGEX = "META-INF\\/.+(\\.SF|\\.RSA|\\.DSA)";
+  public static final String CERT_REGEX = "META-INF/.+(\\.SF|\\.RSA|\\.DSA)";
 
   public static void saveAsJar(File original, File output, List<Clazz> classes) {
     try {
@@ -100,12 +101,12 @@ public class JarIO {
 
   private static byte[] watermark(byte[] byteArray) throws UnsupportedEncodingException {
     String lineSeparator = "\r\n";
-    String manifest = new String(byteArray, "UTF-8");
+    String manifest = new String(byteArray, StandardCharsets.UTF_8);
     if (!manifest.contains("Remapped-By: ")) {
       manifest = manifest.substring(0, manifest.length() - lineSeparator.length()); // remove new line
       manifest += "Remapped-By: Cafecompare " + Utils.getVersion() + lineSeparator + lineSeparator;
     }
-    return manifest.getBytes("UTF-8");
+    return manifest.getBytes(StandardCharsets.UTF_8);
   }
 
   private static JarEntry cloneOldEntry(JarEntry old, String name) {

@@ -1,6 +1,7 @@
 package me.nov.cafecompare.swing.laf;
 
 import java.awt.Color;
+import java.util.logging.Level;
 
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -25,7 +26,7 @@ public class LookAndFeel {
         }
       }
     }
-    LafManager.enableLogging(true);
+    LafManager.setLogLevel(Level.INFO);
     LafManager.registerDefaultsAdjustmentTask((t, d) -> {
       if (Theme.isDark(t)) {
         Object p = d.get("backgroundContainer");

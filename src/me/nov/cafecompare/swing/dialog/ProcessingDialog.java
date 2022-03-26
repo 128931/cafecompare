@@ -10,9 +10,9 @@ import com.github.weisj.darklaf.components.loading.LoadingIndicator;
 
 public class ProcessingDialog extends JDialog {
   private static final long serialVersionUID = 1L;
-  private LoadingIndicator li;
+  private final LoadingIndicator li;
   private JProgressBar pb;
-  private Consumer<ProcessingDialog> consumer;
+  private final Consumer<ProcessingDialog> consumer;
   private Runnable then;
   private Thread action;
 

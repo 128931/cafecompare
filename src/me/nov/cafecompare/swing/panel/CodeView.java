@@ -29,17 +29,17 @@ import name.fraser.neil.plaintext.DiffMatchPatch;
 public class CodeView extends JPanel implements ActionListener {
   private static final long serialVersionUID = 1L;
 
-  public DecompilerTextArea left;
-  public DecompilerTextArea right;
-  private JSplitPane split;
+  public final DecompilerTextArea left;
+  public final DecompilerTextArea right;
+  private final JSplitPane split;
 
-  private JCheckBox aggress;
-  private JLabel similarity;
+  private final JCheckBox aggress;
+  private final JLabel similarity;
 
-  private JComboBox<String> accuracy;
+  private final JComboBox<String> accuracy;
 
   public static IDecompilerBridge decompilerBridge = new FernflowerBridge();
-  public static int editCost = 4;
+  public static final int editCost = 4;
 
   public CodeView(Cafecompare cafecompare) {
     this.setLayout(new BorderLayout());
@@ -56,7 +56,7 @@ public class CodeView extends JPanel implements ActionListener {
     leftActionPanel.setLayout(new GridBagLayout());
     leftActionPanel.add(aggress = new JCheckBox("Decompile aggressively"));
     aggress.addActionListener(this);
-    leftActionPanel.add(accuracy = new JComboBox<String>(new String[] { "Fast", "Accurate", "Pretty accurate", "Perfect", "Limitless" }));
+    leftActionPanel.add(accuracy = new JComboBox<>(new String[]{"Fast", "Accurate", "Pretty accurate", "Perfect", "Limitless"}));
     accuracy.setSelectedIndex(2);
     accuracy.addActionListener(this);
     GridBagConstraints c = new GridBagConstraints();
@@ -75,16 +75,14 @@ public class CodeView extends JPanel implements ActionListener {
     });
 
     JButton remap = new JButton("Remap right by left");
-    remap.addActionListener(l -> {
-      new ProcessingDialog(getParent(), true, (p) -> {
-        String oldName = right.last.node.name;
-        String newName = left.last.node.name;
-        List<Clazz> classes = cafecompare.trees.bottom.classes;
-        new FullRemapper(classes).remap(new MappingFactory().remapMethods(left.last, right.last, p).with(oldName, newName).get());
-        cafecompare.trees.bottom.loadTree(classes);
-        load(false, right.last);
-      }).go();
-    });
+    remap.addActionListener(l -> new ProcessingDialog(getParent(), true, (p) -> {
+      String oldName = right.last.node.name;
+      String newName = left.last.node.name;
+      List<Clazz> classes = cafecompare.trees.bottom.classes;
+      new FullRemapper(classes).remap(new MappingFactory().remapMethods(left.last, right.last, p).with(oldName, newName).get());
+      cafecompare.trees.bottom.loadTree(classes);
+      load(false, right.last);
+    }).go());
     rightActionPanel.add(remap);
     rightActionPanel.add(search);
     GridBagConstraints gbc = new GridBagConstraints();

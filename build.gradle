@@ -17,8 +17,8 @@ compileTestJava.options.encoding = 'UTF-8'
 javadoc.options.encoding = 'UTF-8'
  
 ext {
-    darklaf_ver = "2.2.0"
-    asm_ver = "8.0.1"
+    darklaf_ver = '2.7.3'
+    asm_ver = '9.2'
 }
  
 repositories {
@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-	compile 'commons-io:commons-io:2.6' 
+	compile 'commons-io:commons-io:2.11.0'
 
 	compile "com.github.weisj:darklaf-core:${darklaf_ver}"
 	compile "com.github.weisj:darklaf-theme:${darklaf_ver}"
@@ -40,18 +40,18 @@ dependencies {
 	compile "org.ow2.asm:asm-analysis:${asm_ver}"
 	compile "org.ow2.asm:asm-util:${asm_ver}"
 	compile "org.ow2.asm:asm-commons:${asm_ver}"
-	
-	compile 'org.benf:cfr:0.150'
+
+	compile 'org.benf:cfr:0.152'
 	compile name: 'fernflower-15-05-20'
-	
-	compile 'com.fifesoft:rsyntaxtextarea:3.1.1'
+
+	compile 'com.fifesoft:rsyntaxtextarea:3.2.0'
 }
 
 task fatJar(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': "${project.name}",
                 'Implementation-Version': "${project.version}",
-                'Main-Class': "me.nov.cafecompare.Cafecompare"
+                'Main-Class': 'me.nov.cafecompare.Cafecompare'
     }
     baseName(project.name + '-all')
     from (configurations.compile.collect { entry -> zipTree(entry) }) {

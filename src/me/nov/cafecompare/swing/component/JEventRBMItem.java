@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class JEventRBMItem extends JRadioButtonMenuItem implements ActionListener {
   private static final long serialVersionUID = 1L;
-  private Runnable event;
+  private final Runnable event;
 
   public JEventRBMItem(String option, ButtonGroup bg, Runnable event) {
     super(option);

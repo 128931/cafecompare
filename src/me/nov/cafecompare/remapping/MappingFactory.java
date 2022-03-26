@@ -32,7 +32,7 @@ public class MappingFactory {
         presentValue.percent = bestConfidence;
       }
     } else {
-      uncalculatedMappings.put(name, new SuspectedItem<String>(mapName, bestConfidence));
+      uncalculatedMappings.put(name, new SuspectedItem<>(mapName, bestConfidence));
     }
   }
 
@@ -131,7 +131,7 @@ public class MappingFactory {
             p.setText(String.format("Comparing classes... (Estimated remaining time: %d:%02d:%02d)", seconds / 3600, (seconds % 3600) / 60, seconds % 60));
           }
         }
-      } catch (InterruptedException e) {
+      } catch (InterruptedException ignored) {
       }
     }, "time-calculator").start();
     while (index < size) {
@@ -147,7 +147,7 @@ public class MappingFactory {
     service.shutdown();
     try {
       service.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-    } catch (InterruptedException e) {
+    } catch (InterruptedException ignored) {
     }
     p.setText("Final steps...");
     if (!uncalculatedMappings.isEmpty()) {
@@ -166,7 +166,7 @@ public class MappingFactory {
     int methods = original.node.methods.size();
     int fields = original.node.fields.size();
 
-    Collections.sort(source, (a, b) -> {
+    source.sort((a, b) -> {
       int adif = (Math.abs(a.node.methods.size() - methods) + 1) * (Math.abs(a.node.fields.size() - fields) + 1);
       int bdif = (Math.abs(b.node.methods.size() - methods) + 1) * (Math.abs(b.node.fields.size() - fields) + 1);
       return Integer.compare(adif, bdif);

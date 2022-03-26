@@ -66,13 +66,13 @@ public class FernflowerBridge implements IDecompilerBridge, IBytecodeProvider, I
       return pw.toString();
     }
     if (result == null || result.trim().isEmpty()) {
-      result = "No Fernflower output received\n\nOutput log:\n" + new String(log.toByteArray());
+      result = "No Fernflower output received\n\nOutput log:\n" + log;
     }
     return result;
   }
 
   @Override
-  public byte[] getBytecode(String externalPath, String internalPath) throws IOException {
+  public byte[] getBytecode(String externalPath, String internalPath) {
     return this.bytes;
   }
 

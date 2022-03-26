@@ -9,7 +9,7 @@ import me.nov.cafecompare.io.Clazz;
 public class ClassTreeNode extends DefaultMutableTreeNode implements Comparator<ClassTreeNode> {
   private static final long serialVersionUID = 1L;
 
-  public Clazz member;
+  public final Clazz member;
   private String text;
 
   public ClassTreeNode(Clazz clazz) {
@@ -32,7 +32,7 @@ public class ClassTreeNode extends DefaultMutableTreeNode implements Comparator<
   @SuppressWarnings("unchecked")
   public void sort() {
     if (children != null)
-      Collections.sort(children, this);
+      children.sort(this);
   }
 
   @Override

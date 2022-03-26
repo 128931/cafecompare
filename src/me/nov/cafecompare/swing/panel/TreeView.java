@@ -32,12 +32,12 @@ public class TreeView extends JPanel {
 
   public static boolean autoSelect;
 
-  private Cafecompare cafecompare;
+  private final Cafecompare cafecompare;
 
   public ClassTree top;
   public ClassTree bottom;
 
-  private JSplitPane split;
+  private final JSplitPane split;
 
   private static final Icon analysis = IconLoader.get().loadSVGIcon("res/analysis.svg", false);
 
@@ -64,7 +64,7 @@ public class TreeView extends JPanel {
     public File inputFile;
     public List<Clazz> classes = new ArrayList<>();
     public DefaultTreeModel model;
-    private boolean topPos;
+    private final boolean topPos;
 
     public ClassTree(boolean topPosition) {
       super(topPosition ? "Drag the old version of the jar or class file here" : "Drag the new or obfuscated version of the jar or class file here");
@@ -310,10 +310,7 @@ public class TreeView extends JPanel {
 
   public void hideEqual() {
     for (Clazz c : bottom.classes) {
-      Clazz sameClass = top.classes.stream().filter(cl -> cl.oldEntry.getCrc() == c.oldEntry.getCrc()).findAny().orElse(null);
-      if (sameClass != null) {
-        bottom.removeFromTree((ClassTreeNode) bottom.model.getRoot(), c);
-      }
+      top.classes.stream().filter(cl -> cl.oldEntry.getCrc() == c.oldEntry.getCrc()).findAny().ifPresent(sameClass -> bottom.removeFromTree((ClassTreeNode) bottom.model.getRoot(), c));
     }
     this.invalidate();
     this.validate();

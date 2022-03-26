@@ -7,7 +7,7 @@ import javax.swing.JCheckBoxMenuItem;
 
 public class JEventCBMItem extends JCheckBoxMenuItem implements ActionListener {
   private static final long serialVersionUID = 1L;
-  private Consumer<Boolean> event;
+  private final Consumer<Boolean> event;
 
   public JEventCBMItem(String option, Consumer<Boolean> event) {
     super(option);

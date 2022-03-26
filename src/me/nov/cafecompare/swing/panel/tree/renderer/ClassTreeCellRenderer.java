@@ -18,9 +18,15 @@ import me.nov.cafecompare.swing.panel.tree.ClassTreeNode;
 public class ClassTreeCellRenderer extends DefaultTreeCellRenderer implements Opcodes {
   private static final long serialVersionUID = 1L;
 
-  private Icon pack, clazz, enu, itf, added, removed, equal;
+  private final Icon pack;
+  private final Icon clazz;
+  private final Icon enu;
+  private final Icon itf;
+  private final Icon added;
+  private final Icon removed;
+  private final Icon equal;
 
-  private TreeView treeView;
+  private final TreeView treeView;
 
   public static boolean viewDiffs = true;
 

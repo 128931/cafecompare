@@ -48,9 +48,7 @@ public class CFRBridge implements IDecompilerBridge {
         @Override
         public <T> Sink<T> getSink(SinkType sinkType, SinkClass sinkClass) {
           if (sinkType == SinkType.JAVA && sinkClass == SinkClass.DECOMPILED) {
-            return x -> {
-              result = ((SinkReturns.Decompiled) x).getJava().substring(31);
-            };
+            return x -> result = ((SinkReturns.Decompiled) x).getJava().substring(31);
           }
           return ignore -> {
           };
@@ -89,7 +87,7 @@ public class CFRBridge implements IDecompilerBridge {
         }
       };
       CfrDriver cfrDriver = new CfrDriver.Builder().withClassFileSource(source).withOutputSink(mySink).withOptions(options).build();
-      cfrDriver.analyse(Arrays.asList(name));
+      cfrDriver.analyse(Collections.singletonList(name));
     } catch (Exception e) {
       e.printStackTrace();
       StringWriter sw = new StringWriter();

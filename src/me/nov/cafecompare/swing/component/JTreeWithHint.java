@@ -7,7 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 public class JTreeWithHint extends JTree {
   private static final long serialVersionUID = 1L;
-  protected String hint;
+  protected final String hint;
 
   public JTreeWithHint(String hint) {
     this.hint = hint;

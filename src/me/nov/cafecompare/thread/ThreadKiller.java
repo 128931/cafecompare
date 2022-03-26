@@ -1,8 +1,8 @@
 package me.nov.cafecompare.thread;
 
 public class ThreadKiller extends Thread {
-  private Thread target;
-  private long max;
+  private final Thread target;
+  private final long max;
 
   public ThreadKiller(Thread target, long max) {
     this.target = target;

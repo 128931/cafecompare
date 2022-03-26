@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class ExitListener extends WindowAdapter {
-  private JFrame frame;
+  private final JFrame frame;
 
   public ExitListener(JFrame frame) {
     this.frame = frame;

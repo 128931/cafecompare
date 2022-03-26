@@ -8,7 +8,7 @@ import org.objectweb.asm.tree.ClassNode;
 import me.nov.cafecompare.io.Clazz;
 
 public class FullRemapper {
-  private List<Clazz> classes;
+  private final List<Clazz> classes;
 
   public FullRemapper(List<Clazz> classes) {
     this.classes = classes;
