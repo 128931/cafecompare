@@ -23,6 +23,10 @@ ext {
 
 repositories {
     mavenCentral()
+    maven {
+        name = "forge"
+        url = "https://files.minecraftforge.net/maven"
+    }
     flatDir {
         dirs 'libs'
     }
@@ -57,7 +61,7 @@ dependencies {
     }
 
     compile 'org.benf:cfr:0.152'
-    compile name: 'fernflower-15-05-20'
+    compile 'net.minecraftforge:forgeflower:1.5.498.23'
 
     compile 'com.fifesoft:rsyntaxtextarea:3.2.0'
 }
