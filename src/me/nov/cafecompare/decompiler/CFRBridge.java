@@ -20,7 +20,6 @@ public class CFRBridge implements IDecompilerBridge {
     public static final HashMap<String, String> options = new HashMap<>();
 
     static {
-        options.put("hidebridgemethods", "false");
         options.put("showversion", "false");
         options.put("hideutf", "false");
     }
